@@ -1,7 +1,8 @@
 -- This gets individual transactions and the number of sub transactions by address.
--- It allows you to see on what dates where tokens sent to multiple wallets in a single transaction
-    -- Copy and paste the top transactions into BSC Scan to follow the money.
+
 ```sql
+-- Count the number of wallets a single transaction sent tokens to:
+
 WITH to_txns AS 
     (
     SELECT "to" as address, 
@@ -44,7 +45,7 @@ WITH to_txns AS
         ORDER BY sub_txn_count DESC; 
 
 
--- Code for daily transfer volume
+-- Code for daily transfer volume:
 
 SELECT date_trunc('day', "evt_block_time") as day, 
     sum((value/1000000000000000000)/2) as Daily_Volume
